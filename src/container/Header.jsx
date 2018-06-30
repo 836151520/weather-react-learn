@@ -4,7 +4,6 @@ import Time from '../components/Time'
 
 class Header extends Component {
     render() {
-        console.log({...this.props});
         return (
             <header {...this.props}>
                     <div>占位置</div>

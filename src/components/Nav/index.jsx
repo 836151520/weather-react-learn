@@ -33,7 +33,7 @@ class Nav extends Component {
 Nav = styled(Nav)`
   display: flex;
   >span{
-    padding: 5px 10px;
+    padding: 5px 12px;
     border: 1px solid currentColor;
     border-radius: 5px;
     color: rgba(255, 255, 255, 0.6);
@@ -43,7 +43,7 @@ Nav = styled(Nav)`
   }
   >i{
     color: rgba(255, 255, 255, 0.6);
-    margin: 0 5px;
+    margin: 0 15px;
     width: 15px;
     height: 15px;
     border: 2px solid currentColor;
