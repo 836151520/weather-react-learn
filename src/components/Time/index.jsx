@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
 class Time extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             time: new Date()
         }
@@ -23,8 +23,9 @@ class Time extends Component {
 
 
     render() {
+        console.log({...this.props});
         return (
-            <span {...this.prop}>
+            <span {...this.props}>
                 {this.state.time.toLocaleString()}
             </span>
         )
