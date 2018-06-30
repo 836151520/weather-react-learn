@@ -1,9 +1,9 @@
 import React from 'react'
 import {render} from 'react-dom'
-import Header from './container/Header'
+import App from './container/App'
 import './normal.css'
 
 render(
-    <Header/>,
+    <App/>,
     document.getElementById('root')
 )
