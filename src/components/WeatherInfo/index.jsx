@@ -5,86 +5,76 @@ import img from '../../image/1-0.png'
 import humIcon from '../../image/sd.png'
 import windIcon from '../../image/fx.png'
 
-let Info = ({className, children}) => (
-    <div className={className}>{children}</div>
-)
+let Info = ({className, children}) => <div className={className}>{children}</div>
 
 class WeatherInfo extends Component {
+    static propTypes = {
+        nowWeather: propTypes.shape({
+            fl: propTypes.string,
+            cond: propTypes.string,
+            wind: propTypes.string,
+            pcpn: propTypes.string,
+            imgCode: propTypes.string
+        }),
+        tips: propTypes.string,
+    }
+
+    static defaultProps = {
+        nowWeather: {
+            fl: '22',
+            cond: '晴',
+            wind: '西北',
+            pcpn: '0.0',
+            imgCode: '104'
+        },
+        tips: '建议别出门'
+    }
+
+    constructor() {
+        super()
+        this.state = {imgSrc: ""}
+    }
+
+    componentDidMount() {
+        this.getAndSetImgSrc()
+    }
+
+    async getAndSetImgSrc() {
+        let imgCode = this.props.nowWeather.imgCode
+        let imgSrc = await import(`../../cond-icon-heweather/${imgCode}.png`)
+        this.setState({imgSrc})
+    }
+
     render() {
+        let {
+            nowWeather: {fl, cond, pcpn, wind,},
+            tips
+        } = this.props
+
         return (
             <Fragment>
                 <Info className='info-one'>
-                    <b>00</b>
-                    <img src={img}/>
-                    <strong>晴天</strong>
+                    <b>{fl}</b>
+                    <img src={this.state.imgSrc} alt="天气"/>
+                    <strong>{cond}</strong>
                 </Info>
                 <Info className='info-two'>
                     <span className="hum">
-                        小雨
+                        降雨量 {pcpn}
                     </span>
                     <span className="wind">
-                        北风
+                        {wind}
                     </span>
                 </Info>
                 <Info>
-                    <span className='tips'>白天有降雨，但会使人们感觉有些热，不过大部分人仍会有比较舒适的感觉。</span>
+                    <span className='tips'>{tips}</span>
                 </Info>
             </Fragment>
         )
     }
 }
 
-WeatherInfo = styled(WeatherInfo)`
-  margin-top: 30px;
-  >div{
-    display: flex;
-    align-items: flex-end;
-    flex-wrap:wrap;
-    :nth-child(1){
-      >b{
-        position: relative;
-        font-size: 10em;
-        font-weight: 400;
-        line-height:1;
-          ::after{
-            content: "。";
-            position: absolute;
-            right: -64px;
-            top: -10px;
-            font-size: 69px;
-            font-weight: 300;
-          }
-      }
-      >img{
-        margin: 0 20px;
-      }
-      >strong{
-        font-size: 2em;
-        font-weight: 400;
-        margin-right: 20px;
-      }
-    }
-    
-    :nth-child(2){
-      line-height: 28px;
-      font-size: 20px;
-      margin: 10px 0 20px 0;
-      span{
-        padding-left:22px ;
-        background: no-repeat left center;
-        background-size: 20px;
-      }
-      .hum{
-        margin-right: 20px;
-        background-image: url(${humIcon});
-      }
-      .wind{
-        background-image: url(${windIcon});
-      }
-    }
-    
-  }
-`
+
 Info = styled(Info)`
     display: flex;
     align-items: flex-end;

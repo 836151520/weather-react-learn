@@ -13,7 +13,7 @@ class Nav extends Component {
     static defaultProps = {
         country: '中国',
         province: '北京',
-        city: '北京'
+        city: '北京',
     }
 
     render() {
