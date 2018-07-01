@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import font from '../../common/font'
 
 class Time extends Component {
     constructor(props) {
@@ -24,11 +25,13 @@ class Time extends Component {
 
     render() {
         return (
-            <span {...this.props}>
+            <span {...this.props} id='time'>
                 {this.state.time.toLocaleString()}
             </span>
         )
     }
 }
+
+font('#time')
 
 export default Time
