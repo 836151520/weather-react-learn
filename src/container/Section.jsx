@@ -67,6 +67,9 @@ Section = styled(Section)`
   background:url(${bgImg}) no-repeat center center;
   background-size:cover;
   color: #fff;
+  @media screen and (max-width: 500px) {
+    padding: 0 3vw;
+  }
 `
 
 
