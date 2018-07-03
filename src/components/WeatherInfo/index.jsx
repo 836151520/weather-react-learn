@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import propTypes from 'prop-types'
 import styled from 'styled-components'
-import img from '../../image/1-0.png'
+import img from '../../cond-icon-heweather/100.png'
 import humIcon from '../../image/sd.png'
 import windIcon from '../../image/fx.png'
 
