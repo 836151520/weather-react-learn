@@ -4,27 +4,27 @@ import styled from 'styled-components'
 
 class Nav extends Component {
     static propTypes = {
-        country: propTypes.string, //国
-        province: propTypes.string, //省
-        city: propTypes.string, //市
+        leader: propTypes.string,
+        province: propTypes.string,
+        city: propTypes.string,
 
     }
 
     static defaultProps = {
-        country: '中国',
         province: '北京',
+        leader: '北京',
         city: '北京',
     }
 
     render() {
-        let {country, city, province, className} = this.props
+        let {leader, city, province, className} = this.props
         return (
             <div className={className}>
-                <span>{country}</span>
-                <i></i>
-                <span>{city}</span>
-                <i></i>
                 <span>{province}</span>
+                <i> </i>
+                <span>{leader}</span>
+                <i> </i>
+                <span>{city}</span>
             </div>
         )
     }

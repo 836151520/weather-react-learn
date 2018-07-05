@@ -14,9 +14,9 @@ class WeatherInfo extends Component {
             cond: propTypes.string,
             wind: propTypes.string,
             pcpn: propTypes.string,
-            imgCode: propTypes.string
+            imgCode: propTypes.string,
+            tips: propTypes.string,
         }),
-        tips: propTypes.string,
     }
 
     static defaultProps = {
@@ -25,9 +25,9 @@ class WeatherInfo extends Component {
             cond: '晴',
             wind: '西北',
             pcpn: '0.0',
-            imgCode: '104'
+            imgCode: '104',
+            tips: '建议别出门'
         },
-        tips: '建议别出门'
     }
 
     constructor() {
@@ -41,21 +41,18 @@ class WeatherInfo extends Component {
 
     async getAndSetImgSrc() {
         let imgCode = this.props.nowWeather.imgCode
-        let imgSrc = await import(`../../cond-icon-heweather/${imgCode}.png`)
+        let imgSrc = await import(`../../cond-icon-heweather/${imgCode || 104}.png`)
         this.setState({imgSrc})
     }
 
     render() {
-        let {
-            nowWeather: {fl, cond, pcpn, wind,},
-            tips
-        } = this.props
-
+        let {fl, cond, pcpn, wind, tips} = this.props.nowWeather
+        let {imgSrc} = this.state
         return (
             <Fragment>
                 <Info className='info-one'>
                     <b>{fl}</b>
-                    <img src={this.state.imgSrc} alt="天气"/>
+                    <img src={imgSrc} alt="天气"/>
                     <strong>{cond}</strong>
                 </Info>
                 <Info className='info-two'>

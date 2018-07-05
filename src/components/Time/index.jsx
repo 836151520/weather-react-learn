@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import font from '../../common/font'
+import styled from 'styled-components'
 
 class Time extends Component {
     constructor(props) {
@@ -24,14 +25,24 @@ class Time extends Component {
 
 
     render() {
+        let {className} = this.props
+        let time = this.state.time.toLocaleString()
         return (
-            <span {...this.props} id='time'>
-                {this.state.time.toLocaleString()}
+            <span className={className}
+                  id='time'>
+                {time}
             </span>
         )
     }
 }
 
+//有字库等宽字体
 font('#time')
+
+Time = styled(Time)`
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+`
 
 export default Time

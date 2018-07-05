@@ -8,49 +8,84 @@ import ForecastList from '../components/ForecastList'
 import getLocation from '../common/getLocation'
 import getWeatherInfo from '../common/getWeatherInfo'
 import bgImg from '../image/bg.jpg'
-
+import store from '../store'
 
 class Section extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            location: {},
-            tips: '',
+            nowWeather: {
+                fl: '',
+                cond: '',
+                wind: '',
+                pcpn: '',
+                imgCode: '',
+                tips: '',
+            },
+            location: {
+                city: '',
+                province: '',
+                leader: ''
+            },
             forecastList: [],
         }
     }
 
     async componentDidMount() {
         let location = await getLocation()
+        //定位
+        if (!location) return alert('GPS定位失败！')
+
+        this.setLocation(location)
         let weather = await getWeatherInfo(location.city)
-        if (location && weather) {
-            this.setState({
-                location: {
-                    country: weather.basic.cnty,
-                    city: location.city,
-                    province: location.province,
-                },
-                nowWeather: {
-                    fl: weather.now.fl,
-                    cond: weather.now.cond.txt,
-                    wind: weather.now.wind.dir,
-                    pcpn: weather.now.pcpn,
-                    imgCode:weather.now.cond.code
-                },
-                tips: weather.suggestion.drsg.txt,
-                forecastList: weather.daily_forecast,
-            })
-        }
+        //获取天气数据
+
+        if (!weather) return alert('该地区站暂不支持！')
+
+        this.setWeatherInfo(weather)
+        store.dispatch({
+            type: 'changeLocation',
+            location: location
+        })
+        store.subscribe(async () => {
+            location = store.getState().location
+            weather = await getWeatherInfo(location.city)
+            this.setLocation(location)
+            weather && this.setWeatherInfo(weather)
+        })
 
     }
 
+    setLocation(location) {
+        this.setState({
+            location: {
+                leader: location.leader,
+                city: location.city,
+                province: location.province,
+            }
+        })
+    }
+
+    setWeatherInfo(weather) {
+        this.setState({
+            nowWeather: {
+                fl: weather.now.fl,
+                cond: weather.now.cond.txt,
+                wind: weather.now.wind.dir,
+                pcpn: weather.now.pcpn,
+                imgCode: weather.now.cond.code,
+                tips: weather.suggestion.drsg.txt,
+            },
+            forecastList: weather.daily_forecast,
+        })
+    }
 
     render() {
-        let {location, nowWeather, tips, forecastList} = this.state
+        let {location, nowWeather, forecastList} = this.state
         return (
             <section className={this.props.className}>
                 <Nav {...location} />
-                <WeatherInfo nowWeather={nowWeather} tips={tips}/>
+                <WeatherInfo nowWeather={nowWeather}/>
                 <ForecastList forecastList={forecastList}/>
             </section>
         )
@@ -69,8 +104,8 @@ Section = styled(Section)`
   color: #fff;
   @media screen and (max-width: 500px) {
     padding: 0 3vw;
+    
   }
 `
-
 
 export default Section

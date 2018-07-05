@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 
-import Time from '../components/Time'
 
+import Time from '../components/Time'
+import SearchCity from '../components/SearchCity'
 
 class Header extends Component {
     render() {
+        let {className} = this.props
         return (
-            <header {...this.props}>
-                <div>占位置</div>
-                <Time/>
+            <header className={className}>
+                <SearchCity/>
+                <Time />
             </header>
         )
     }
