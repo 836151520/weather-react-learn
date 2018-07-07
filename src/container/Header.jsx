@@ -21,7 +21,7 @@ Header = styled(Header)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 9vh;
+  height: 9%;
   background: #000;
   color: white;
   padding: 0 10vw;

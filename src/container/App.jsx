@@ -5,6 +5,10 @@ import '../normal.css'
 
 
 class App extends Component {
+    componentDidMount() {
+        document.body.style.height = window.innerHeight + 'px'
+    }
+
     render() {
         return (
             <Fragment>

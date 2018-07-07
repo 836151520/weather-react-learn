@@ -53,8 +53,8 @@
     "styled-components": "^3.3.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "NODE_ENV=development  node scripts/start.js",
+    "build": " NODE_ENV=production node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

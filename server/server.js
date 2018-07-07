@@ -6,22 +6,22 @@ let queryString = require('querystring')
 let findCity = require('./findCity')
 
 http.createServer(function (request, response) {
+    console.log(request.url)
     let urlObj = url.parse(request.url)
     let path = urlObj.pathname === '/'
-        ? `../build${urlObj.pathname}index.html`
-        : `../build${urlObj.pathname}`
+        ? `.${urlObj.pathname}index.html`
+        : `.${urlObj.pathname}`
     let query = urlObj.query
-    console.log(path);
 
     if (query) {
-        query = queryString(query)
+        query = queryString.parse(query)
         if (request.method === 'GET') {
             response.writeHead(200, {
                 'Content-Type': 'text/plain',
                 'Access-Control-Allow-Origin': '*'
             })
-            findCity(query.getLocation, function (citys) {
-                response.write(JSON.stringify(citys))
+            findCity(query, function (citys) {
+                response.write(JSON.stringify((citys)))
                 response.end()
             })
         }
@@ -43,7 +43,7 @@ http.createServer(function (request, response) {
             response.end()
         }
     }
-}).listen(8080)
+}).listen(3001)
 
 
 function write404(response) {

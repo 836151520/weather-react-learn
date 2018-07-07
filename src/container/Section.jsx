@@ -53,7 +53,6 @@ class Section extends Component {
             this.setLocation(location)
             weather && this.setWeatherInfo(weather)
         })
-
     }
 
     setLocation(location) {
@@ -98,7 +97,7 @@ Section = styled(Section)`
   justify-content: space-around;
   padding: 0 10vw ;
   border-top:30px;
-  height: 91vh;
+  height: 91%;
   background:url(${bgImg}) no-repeat center center;
   background-size:cover;
   color: #fff;

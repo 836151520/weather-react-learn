@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import propTypes from 'prop-types'
 import styled from 'styled-components'
 import findCity from '../../common/findCity'
 import store from '../../store'

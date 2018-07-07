@@ -12,11 +12,12 @@ function getLocation() {
                         findCity({
                             province: result.province.replace('省', ''),
                             city: result.city.replace('市', ''),
-                        }).then((list) => {
-                            resolve(list[0])
                         })
-                        // resolve(result)
-                        // 查询成功，result即为当前所在城市信息
+                            .then((list) => {
+                                // resolve(result)
+                                // 查询成功，result即为当前所在城市信息
+                                resolve(list[0])
+                            })
                     } else {
                         resolve(null)
                     }
