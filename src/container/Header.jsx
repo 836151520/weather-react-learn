@@ -10,8 +10,8 @@ class Header extends Component {
         let {className} = this.props
         return (
             <header className={className}>
-                <SearchCity/>
-                <Time />
+                <SearchCity />
+                <Time/>
             </header>
         )
     }

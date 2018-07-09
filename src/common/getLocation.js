@@ -10,11 +10,9 @@ function getLocation() {
                     if (status === 'complete' &&
                         result.info === 'OK') {
                         findCity({
-                            province: result.province.replace('省', ''),
-                            city: result.city.replace('市', ''),
+                            location: result.city.replace('市', ''),
                         })
                             .then((list) => {
-                                // resolve(result)
                                 // 查询成功，result即为当前所在城市信息
                                 resolve(list[0])
                             })

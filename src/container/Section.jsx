@@ -40,7 +40,7 @@ class Section extends Component {
         let weather = await getWeatherInfo(location.city)
         //获取天气数据
 
-        if (!weather) return alert('该地区站暂不支持！')
+        if (!weather) return alert('该地区站暂不支持查询天气！')
 
         this.setWeatherInfo(weather)
         store.dispatch({

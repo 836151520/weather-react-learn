@@ -16,14 +16,18 @@ class SearchCity extends Component {
     }
 
     handleOnChange(e) {
-        let val = e.target.value
-        if (!isChinaLang(val)) return
-        findCity({
-            location: val
-        })
-            .then(cityList => this.setState({
+        //去除空白符
+        let val = e.target.value.replace(/\s/g,'')
+        if (val === '') {
+            this.setState({cityList: []})
+        }
+        if (isChinaLang(val)) {
+            findCity({
+                location: val
+            }).then(cityList => this.setState({
                 cityList: cityList
             }))
+        }
     }
 
     handleOnBlur() {
@@ -51,7 +55,7 @@ class SearchCity extends Component {
                  onFocus={this.handleOnFocus}>
                 <input
                     type="text"
-                    placeholder="输入城市名"
+                    placeholder="输入城市名(中文)"
                     onChange={this.handleOnChange}
                 />
                 <ul ref={ul => this.ul = ul}>

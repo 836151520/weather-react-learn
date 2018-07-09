@@ -1,17 +1,13 @@
 import Axios from 'axios'
 
-let ip = 'localhost'
-let port = 3001
-
-function findCity({city, province, leader, location}) {
-    return Axios
-        .get(`http://${ip}:${port}?city=${city}&province=${province}&leader=${leader}&location=${location}`)
-        .catch((err) => alert('findCity: ' + err))
+function findCity({location}) {
+    return Axios.get(`https://search.heweather.com/find?key=de3f25819a7b4427a4ca71d7cb1e9491&location=${ location}&group=cn&number=20`)
         .then(resolve => {
-            return resolve.data.map(location => ({
-                city: location.cityZh,
-                province: location.provinceZh,
-                leader: location.leaderZh,
+            let arr = resolve.data.HeWeather6[0].basic || []
+            return arr.map(location => ({
+                city: location.location,
+                leader: location.parent_city,
+                province: location.admin_area,
             }))
         })
 }
