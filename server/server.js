@@ -7,9 +7,11 @@ http.createServer(function (request, response) {
     console.log(request.url)
     let urlObj = url.parse(request.url)
     let path = urlObj.pathname === '/'
-        ? `../build/${urlObj.pathname}index.html`
-        : `../build/${urlObj.pathname}`
+        ? `.${urlObj.pathname}index.html`
+        : `.${urlObj.pathname}`
     let contentType = mime.getType(path)
+
+    console.log(request.url,'----',path);
 
     if (contentType) {
         fs.readFile(path, function (err, bytes) {
@@ -31,5 +33,5 @@ http.createServer(function (request, response) {
 
 function write404(response) {
     response.writeHead(404, {'Content-Type': 'text/html'})
-    response.write("页面找不到了")
+    response.write("404 Not Found")
 }

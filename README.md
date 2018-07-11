@@ -1,3 +1,3 @@
-使用了react redux styled-components
-##目录
-数据库用mongodb
+react,redux,styled-components
+定位使用高德地图
+天气数据使用和风天气
