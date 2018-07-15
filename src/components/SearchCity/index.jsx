@@ -17,7 +17,7 @@ class SearchCity extends Component {
 
     handleOnChange(e) {
         //去除空白符
-        let val = e.target.value.replace(/\s/g,'')
+        let val = e.target.value.replace(/\s/g, '')
         if (val === '') {
             this.setState({cityList: []})
         }
@@ -59,8 +59,8 @@ class SearchCity extends Component {
                     onChange={this.handleOnChange}
                 />
                 <ul ref={ul => this.ul = ul}>
-                    {cityList.map((o, i) => (
-                        <li key={i}
+                    {cityList.map(o => (
+                        <li key={o.province + o.leader + o.city}
                             onClick={() => this.handleOnClick(o)}>
                             {o.province}
                             --
