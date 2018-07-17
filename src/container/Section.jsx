@@ -9,6 +9,7 @@ import getLocation from '../common/getLocation'
 import getWeatherInfo from '../common/getWeatherInfo'
 import bgImg from '../image/bg.jpg'
 import store from '../store'
+import {clearCity} from '../common/storageCityByLocal'
 
 class Section extends Component {
     constructor(props) {
@@ -40,7 +41,11 @@ class Section extends Component {
         let weather = await getWeatherInfo(location.city)
         //获取天气数据
 
-        if (!weather) return alert('该地区站暂不支持查询天气！')
+        if (!weather) {
+            //清除storage
+            clearCity()
+            return alert('该地区站暂不支持查询天气！')
+        }
 
         this.setWeatherInfo(weather)
         store.dispatch({
