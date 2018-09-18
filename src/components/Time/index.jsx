@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import font from '../../common/font'
+// import font from '../../common/font'
 import styled from 'styled-components'
 
 class Time extends Component {
@@ -37,7 +37,7 @@ class Time extends Component {
 }
 
 //有字库等宽字体
-font('#time')
+// font('#time')
 
 Time = styled(Time)`
   @media screen and (max-width: 500px) {

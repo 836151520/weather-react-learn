@@ -1,16 +1,16 @@
 const storage = window.localStorage
 
-function setCity(location) {
+function setCityByStorage(location) {
     storage.setItem('city', JSON.stringify(location))
 }
 
-function getCity() {
+function getCityByStorage() {
     return JSON.parse(storage.getItem('city'))
 }
 
-function clearCity() {
+function clearCityToStorage() {
     storage.clear()
 }
 
-export {getCity, setCity, clearCity}
+export {getCityByStorage, setCityByStorage, clearCityToStorage}
 

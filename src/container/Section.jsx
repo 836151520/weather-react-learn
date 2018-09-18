@@ -9,7 +9,7 @@ import getLocation from '../common/getLocation'
 import getWeatherInfo from '../common/getWeatherInfo'
 import bgImg from '../image/bg.jpg'
 import store from '../store'
-import {clearCity} from '../common/storageCityByLocal'
+import {clearCityToStorage} from '../common/storageCityByLocal'
 
 class Section extends Component {
     constructor(props) {
@@ -43,7 +43,7 @@ class Section extends Component {
 
         if (!weather) {
             //清除storage
-            clearCity()
+            clearCityToStorage()
             return alert('该地区站暂不支持查询天气！')
         }
 
